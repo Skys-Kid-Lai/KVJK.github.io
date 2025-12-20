@@ -1,0 +1,265 @@
+:root {
+    /* --- 全域變數 --- */
+    --bg-body: #1a1a1a;
+    --bg-card: #222222;
+    --text-main: #e0e0e0;
+    --text-muted: #888888;
+    --border-color: rgba(255,255,255,0.1);
+    --nav-bg: rgba(26, 26, 26, 0.95);
+    
+    /* 領域代表色 */
+    --cs-main: #3587d3;
+    --cs-light: #d6eaff;
+    --lit-main: #f69f4e;
+    --lit-light: #fff0db;
+    --art-main: #e75dff;
+    --art-light: #fadfff;
+}
+
+[data-theme="light"] {
+    --bg-body: #f4f4f4;
+    --bg-card: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-color: rgba(0,0,0,0.1);
+    --nav-bg: rgba(244, 244, 244, 0.95);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Noto Serif TC', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   導覽列
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 70px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; z-index: 1000;
+}
+
+/* Home Logo */
+.nav-logo {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-main);
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer; padding: 5px 0;
+}
+.logo-icon { font-size: 1.5rem; transition: transform 0.3s; }
+.logo-text {
+    white-space: nowrap; opacity: 1; transform: translateX(0);
+    transition: all 0.3s ease;
+}
+.nav-logo:hover .logo-text { opacity: 0; transform: translateX(-5px); }
+.nav-logo:hover .logo-icon { transform: scale(1.2); }
+
+/* 右側選單 */
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+.nav-link {
+    font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 600;
+    position: relative; color: var(--text-muted); transition: color 0.3s;
+}
+.nav-link:hover { opacity: 1; }
+.nav-link.cs-link:hover { color: var(--cs-main); }
+.nav-link.lit-link:hover { color: var(--lit-main); }
+.nav-link.art-link:hover { color: var(--art-main); }
+
+.theme-btn {
+    background: none; border: 1px solid var(--border-color);
+    border-radius: 50%; width: 32px; height: 32px;
+    cursor: pointer; color: var(--text-main);
+    display: flex; align-items: center; justify-content: center;
+    margin-left: 10px; transition: 0.3s;
+}
+.theme-btn:hover { background: var(--border-color); }
+.hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-main); }
+
+/* =========================================
+   通用佈局
+   ========================================= */
+.main-wrapper {
+    flex: 1; width: 90%; max-width: 1200px;
+    margin: 100px auto 40px; /* Navbar 空間 */
+    display: flex; flex-direction: column;
+    align-items: center; 
+}
+
+.intro-section {
+    text-align: center; margin-bottom: 60px;
+    width: 100%; display: flex; flex-direction: column; align-items: center;
+}
+.profile-pic {
+    width: 150px; height: 150px; border-radius: 50%;
+    object-fit: cover; border: 3px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.my-name { 
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 10px 0; 
+}
+.tagline { 
+    color: var(--text-muted); 
+    font-family: 'Fira Code', monospace; 
+    margin-bottom: 20px;
+}
+.bio {
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-main);
+    opacity: 0.8;
+}
+
+footer {
+    text-align: center; padding: 15px;
+    color: var(--text-muted); font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-body); width: 100%; margin-top: auto;
+}
+
+.card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+    overflow: hidden;
+}
+
+.card-inner { 
+    z-index: 2; 
+    padding: 20px; 
+}
+.icon { 
+    display: block; 
+    font-size: 3rem; 
+    margin-bottom: 20px; 
+    transition: transform 0.3s; 
+}
+.card h2 { 
+    margin-bottom: 10px; 
+    font-size: 1.5rem; 
+}
+.card p { 
+    opacity: 0.7; 
+    font-size: 0.9rem; 
+}
+.card:hover { 
+    transform: translateY(-8px); 
+    color: #222 !important; 
+    border-color: transparent; 
+}
+.card:hover .icon { 
+    transform: scale(1.1); 
+}
+
+/* --- 領域 --- */
+/* CS */
+.card.cs .icon { 
+    color: var(--cs-main); 
+}
+.card.cs:hover {
+    background-color: var(--cs-light);
+    border: 2px solid var(--cs-main);
+    box-shadow: 0 10px 20px rgba(53, 135, 211, 0.3);
+}
+
+/* Lit */
+.card.lit .icon { 
+    color: var(--lit-main); 
+}
+.card.lit:hover {
+    background-color: var(--lit-light);
+    border: 2px solid var(--lit-main);
+    box-shadow: 0 10px 20px rgba(254, 186, 108, 0.3);
+}
+
+/* Art */
+.card.art .icon { 
+    color: var(--art-main); 
+}
+.card.art:hover {
+    background-color: var(--art-light);
+    border: 2px solid var(--art-main);
+    box-shadow: 0 10px 20px rgba(231, 93, 255, 0.3);
+}
+
+/* 區分首頁與內頁 */
+/* 首頁 */
+.home-layout {
+    display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+    width: 100%;
+}
+.home-layout .card {
+    flex: 1; 
+    min-width: 280px; height: 350px; 
+}
+/* 內頁 */
+.inner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+.inner-grid .card {
+    height: 250px; 
+    width: 100%;
+}
+
+
+@media (max-width: 768px) {
+    .home-layout { 
+        flex-direction: column; 
+    }
+    .home-layout .card { 
+        width: 100%; height: 200px; 
+    }
+    
+    .inner-grid { 
+        grid-template-columns: 1fr; 
+    } 
+
+    .hamburger { 
+        display: block; 
+    }
+    .nav-menu {
+        position: fixed; top: 70px; right: -100%;
+        width: 100%; height: calc(100vh - 70px);
+        background: var(--bg-card);
+        flex-direction: column; justify-content: flex-start;
+        padding-top: 50px; transition: 0.3s;
+        border-top: 1px solid var(--border-color); gap: 0;
+    }
+    .nav-menu.active { 
+        right: 0; 
+    }
+    .nav-link { 
+        width: 100%; text-align: center; padding: 20px; font-size: 1.2rem; 
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .theme-btn {
+        margin-top: 40px; width: 50px; height: 50px;
+        font-size: 1.2rem; border: 2px solid var(--border-color);
+    }
+}
