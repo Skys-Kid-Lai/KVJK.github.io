@@ -1,0 +1,344 @@
+/* css/index.css */
+.scroll-trigger-container {
+    height: 200vh; 
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.sticky-content {
+    position: sticky;
+    top: 80px; 
+    height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
+    overflow: hidden;
+    width: 100%; 
+}
+
+/* === 個人資料 === */
+.profile-left {
+    text-align: center;
+    transition: all 0.8s ease;
+    flex-shrink: 0;
+    z-index: 2;
+    width: auto;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--text-main);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.8s ease;
+    flex-shrink: 0;       
+    aspect-ratio: 1 / 1;  
+}
+
+.my-name {
+    font-size: 3rem;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main);
+}
+
+.my-title {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.my-quote {
+    font-style: italic;
+    opacity: 0.6;
+    margin-top: 20px;
+}
+
+/* === 分隔線 === */
+.center-divider {
+    width: 0px;
+    height: 0%; 
+    background: var(--border-color);
+    margin: 0;
+    transition: all 0.5s ease; /* 延遲展開 */
+}
+
+/* === 簡介與經歷=== */
+.intro-right {
+    width: 0; 
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* 隱藏內容 */
+}
+
+.bio-box, .timeline-box {
+    margin-bottom: 30px;
+    white-space: nowrap; /* 防止文字換行導致排版跳動 */
+}
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    border-left: 2px solid var(--border-color); 
+    padding-left: 15px;
+    transition: 0.3s; 
+}
+/* CS */
+.timeline-item.cs {
+    border-left-color: #3587d3;
+}
+
+/* Literature */
+.timeline-item.lit {
+    border-left-color: #d33535;
+}
+
+/* Art */
+.timeline-item.art {
+    border-left-color: #d335d3;
+}
+
+/* Project */
+.timeline-item.other {
+    border-left-color: #27c93f;
+}
+
+.year { 
+    font-weight: bold; 
+    color: var(--text-main); 
+    font-family: 'Fira Code'; 
+}
+.event { 
+    color: var(--text-muted); 
+}
+
+.sticky-content.mode-split {
+    justify-content: center; 
+    padding: 0; 
+    gap: 40px; 
+}
+
+.sticky-content.mode-split .profile-left {
+    transform: scale(0.9); 
+    text-align: center; 
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.sticky-content.mode-split .avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto; 
+    border-radius: 50%;
+}
+
+.sticky-content.mode-split .center-divider {
+    width: 1px;
+    height: 80%; 
+    margin: 0 50px;
+}
+
+.sticky-content.mode-split .intro-right {
+    width: 450px; 
+    opacity: 1;
+    transform: translateX(0);
+    white-space: normal;
+}
+
+.sticky-content.mode-split .bio-box,
+.sticky-content.mode-split .timeline-box {
+    white-space: normal; 
+}
+
+
+/* === 領域導覽 === */
+.domain-section {
+    display: flex;
+    align-items: flex-start; 
+    justify-content: center;
+    padding-top: 10vh; 
+    padding-bottom: 20vh; 
+    min-height: 60vh; 
+    overflow: hidden;
+}
+
+.domain-container {
+    display: flex;
+    align-items: flex-start; 
+    width: 100%;
+    max-width: 100%;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 60px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.domain-container.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.domain-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    transition: 0.3s;
+    /* 滑鼠感應範圍 */
+    cursor: pointer;
+    align-self: stretch; 
+    margin: 0 10px; 
+    background: rgba(255, 255, 255, 0); 
+}
+
+.domain-title {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: 0.3s;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.domain-detail {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    height: 0; 
+    overflow: hidden;
+}
+
+.domain-separator {
+    width: 1px;
+    background: var(--border-color);
+    align-self: stretch; 
+}
+
+.domain-item:hover .domain-title {
+    color: var(--text-main);
+    transform: scale(1.1);
+}
+.cs-hover:hover .domain-title { 
+    color: #3587d3; 
+} 
+.lit-hover:hover .domain-title { 
+    color: #d33535; 
+} /* 紅色 */
+.art-hover:hover .domain-title { 
+    color: #d335d3; 
+} /* 紫色 */
+
+.domain-item:hover .domain-detail {
+    opacity: 1;
+    transform: translateY(0);
+    height: auto; 
+}
+
+
+@media (max-width: 768px) {
+    .scroll-trigger-container { 
+        height: auto; margin-bottom: 50px; 
+    }
+    .sticky-content { 
+        position: static; 
+        height: auto; 
+        flex-direction: column; 
+        padding: 40px 20px;
+    }
+    
+    .profile-left {
+        width: 100% !important; 
+        text-align: center !important; 
+        margin-bottom: 30px; 
+        transform: none !important;}
+    .avatar { 
+        margin: 0 auto !important; 
+        width: 150px; 
+        height: 150px; }
+    .center-divider { 
+        width: 80%; 
+        height: 1px !important; 
+        margin: 20px auto; 
+    }
+    .intro-right { 
+        width: 100% !important; 
+        opacity: 1; 
+        transform: none; 
+        text-align: center; 
+    }
+    .timeline-item {
+        border-left: 4px solid var(--border-color) !important; 
+        border-bottom: none; 
+        justify-content: flex-start; 
+        text-align: left;
+        padding-left: 20px; 
+        margin-left: 10px;  
+    }
+    .timeline-item.cs { 
+        border-left-color: #3587d3 !important; 
+    }
+    .timeline-item.lit { 
+        border-left-color: #d33535 !important; 
+    }
+    .timeline-item.art { 
+        border-left-color: #d335d3 !important; 
+    }
+    
+    /* 年份與事件的排版 */
+    .timeline-item .year {
+        min-width: 50px; 
+        margin-right: 10px;
+    }
+    /* 下方導覽列 */
+    .domain-container { 
+        flex-direction: column; 
+        border: none; 
+    }
+    .domain-item { 
+        width: 100%; 
+        border-bottom: 1px solid var(--border-color); 
+        padding: 30px 0; 
+    }
+    .domain-separator { 
+        display: none; 
+    }
+    
+    /* 手機版顯示一點點 detail 或是點擊展開 */
+    .domain-detail { 
+        height: auto; 
+        opacity: 0.6; 
+        transform: none; 
+        margin-top: 10px; 
+    }
+    .domain-item:hover .domain-detail { 
+        opacity: 1; 
+    }
+
+    .sticky-content.mode-split {
+        flex-direction: column;
+        justify-content: flex-start; 
+        gap: 20px;
+    }
+    .sticky-content.mode-split .profile-left {
+        width: 100%;
+        text-align: center;
+    }
+    .sticky-content.mode-split .intro-right {
+        width: 100%;
+    }
+}
