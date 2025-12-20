@@ -1,0 +1,409 @@
+/* css/cs.css */
+
+/* === 0. 變數定義 === */
+:root {
+    --cs-sub-list-bg: rgba(0,0,0,0.2);
+    --cs-mobile-sub-bg: #1a1a1a;
+    --cs-mobile-content-bg: #111111;
+    --cs-mobile-border: rgba(255,255,255,0.1);
+}
+
+[data-theme="light"] {
+    --cs-sub-list-bg: rgba(0,0,0,0.03);
+    --cs-mobile-sub-bg: #eaeaea;
+    --cs-mobile-content-bg: #ffffff;
+    --cs-mobile-border: rgba(0,0,0,0.1);
+}
+
+/* === 1. CS 頁面佈局 === */
+.cs-layout {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 150px);
+    margin-top: 20px;
+    gap: 30px;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* === 2. 左側列表 (Sidebar) === */
+.sidebar-wrapper {
+    flex: 0 0 800px;
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    height: 100%;
+}
+
+.cs-sidebar {
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: none;
+    padding-bottom: 50px;
+}
+.cs-sidebar::-webkit-scrollbar { display: none; }
+
+.back-btn-container {
+    height: 0; opacity: 0; overflow: hidden;
+    transition: all 0.3s ease; margin-bottom: 0;
+}
+
+.back-btn {
+    display: inline-flex; align-items: center; padding: 8px 16px;
+    color: var(--cs-main); cursor: pointer; font-size: 0.9rem;
+    font-family: 'Fira Code', monospace; border: 1px solid var(--cs-main);
+    border-radius: 4px; background: transparent; transition: 0.3s;
+}
+.back-btn:hover { background: var(--cs-main); color: #fff; }
+
+/* 類別項目 (電腦版基礎) */
+.cs-category-item {
+    background: var(--bg-body);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.cs-category-header {
+    padding: 25px 10px;
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+}
+.cs-category-item:hover .cs-category-header {
+    background: var(--cs-sub-list-bg); padding-left: 20px;
+}
+
+.cat-title { font-size: 1.2rem; font-weight: bold; color: var(--text-main); font-family: 'Fira Code', monospace; }
+.cat-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 15px; }
+
+.cs-sub-list {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    background: var(--cs-sub-list-bg);
+}
+
+.sub-item {
+    padding: 15px 20px 15px 30px;
+    border-left: 2px solid transparent;
+    font-size: 0.95rem; color: var(--text-muted);
+    cursor: pointer; transition: 0.2s;
+    display: flex; flex-direction: column;
+}
+.sub-item:hover { color: var(--text-main); background: rgba(128,128,128,0.1); }
+
+.sub-item.active {
+    color: #fff; background: rgba(53, 135, 211, 0.8); border-left-color: var(--cs-main);
+}
+[data-theme="light"] .sub-item.active { color: #fff; }
+
+/* === 3. 右側內容區 === */
+.cs-viewer {
+    flex: 1; opacity: 0; transform: translateX(100px);
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 8px; padding: 0; overflow: hidden;
+    transition: all 0.5s ease; display: none; position: relative;
+}
+
+.markdown-body { padding: 40px; height: 100%; overflow-y: auto; }
+.placeholder-text {
+    height: 100%; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 1.1rem; font-family: 'Fira Code', monospace;
+    opacity: 0.5; pointer-events: none;
+}
+
+/* === 4. 手機內容區 === */
+@media (min-width: 769px) {
+    .mobile-content-wrapper { display: none !important; }
+    .mobile-footer-action { display: none !important; }
+}
+
+.mobile-content-wrapper {
+    display: none; 
+    background: var(--cs-mobile-content-bg);
+    border-top: 1px solid var(--cs-mobile-border);
+    border-bottom: 1px solid var(--cs-mobile-border);
+    padding: 20px; 
+    margin-top: 10px; 
+    width: 100%;
+
+    color: var(--text-main); /* 改回預設文字顏色 (深色模式白，淺色模式黑) */
+    font-weight: normal;     /* 取消加粗 */
+    text-align: left;        /* 確保文字靠左 */
+}
+.mobile-content-wrapper.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* === 5. 程式碼區塊 === */
+.code-block-wrapper {
+    background: #0d1117; border: 1px solid var(--border-color);
+    border-radius: 8px; margin-bottom: 20px; display: flex;
+    overflow: hidden; font-family: 'Fira Code', monospace;
+    font-size: 0.9rem; line-height: 1.6; max-width: 100%;
+}
+.line-numbers-col {
+    background: #161b22; color: #484f58; padding: 15px 10px;
+    text-align: right; border-right: 1px solid #30363d;
+    user-select: none; min-width: 40px;
+}
+.code-content-col { padding: 15px; overflow-x: auto; color: #c9d1d9; flex: 1; }
+.code-content-col code { background: transparent; padding: 0; white-space: pre; }
+
+/* === 6. Split Mode (Desktop) === */
+.cs-layout.mode-split .sidebar-wrapper {
+    flex: 0 0 300px; margin: 0; border-right: 1px solid var(--border-color);
+}
+.cs-layout.mode-split .back-btn-container {
+    height: 50px; opacity: 1; margin-bottom: 10px;
+}
+.cs-layout.mode-split .cs-category-header {
+    flex-direction: column; align-items: flex-start; gap: 5px; padding: 15px 10px;
+}
+.cs-layout.mode-split .cs-viewer {
+    display: block; opacity: 1; transform: translateX(0);
+}
+.cs-category-item.active .cs-sub-list {
+    max-height: 1000px; opacity: 1; border-bottom: 1px solid var(--border-color);
+}
+.cs-category-item.active .cat-title { color: var(--cs-main); }
+
+
+/* ==================================================
+   RWD 手機版特別設定 (修正堆疊問題)
+   ================================================== */
+@media (max-width: 768px) {
+    .cs-layout { 
+        height: auto; flex-direction: column; overflow: visible; gap: 0; 
+    }
+
+    /* 確保 Sidebar 不會限制內容捲動 */
+    .cs-sidebar { overflow: visible; }
+    
+    /* 增加頂部間距，避免第一個項目被 Navbar 吃掉 */
+    .sidebar-wrapper { 
+        flex: auto; width: 100%; max-width: 100%; border-right: none; 
+        padding-top: 20px; 
+    }
+    .cs-viewer { display: none !important; }
+    .cs-layout.mode-split .sidebar-wrapper { flex: auto; width: 100%; border: none; }
+    .back-btn-container { display: none !important; }
+
+    /* === 關鍵修正：取消外層 Sticky，改為相對定位 === */
+    .cs-category-item {
+        position: relative; /* 讓內容可以推擠下方元素 */
+        top: auto;
+        z-index: 1;
+        background: var(--bg-body); 
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s;
+    }
+
+    /* === 關鍵修正：只讓標題 Sticky === */
+    .cs-category-header {
+        position: sticky;
+        top: 70px; /* 吸附在 Navbar 下方 */
+        z-index: 20; /* 確保蓋過細項內容 */
+        background: var(--bg-body);
+        box-shadow: 0 1px 5px rgba(0,0,0,0.1); 
+        margin-bottom: 0;
+    }
+
+    /* 展開時標題樣式 */
+    .cs-category-item.active .cs-category-header {
+        background: var(--bg-card);
+        border-bottom: 2px solid var(--cs-main);
+        z-index: 30; /* 確保展開的標題在最上層 */
+    }
+
+    /* 細項列表 */
+    .cs-sub-list {
+        background: var(--cs-mobile-sub-bg);
+        position: static;
+        z-index: 1;
+    }
+    
+    /* Active 樣式 (深藍字) */
+    .sub-item.active {
+        color: var(--cs-main) !important; 
+        font-weight: bold;
+        background: rgba(53, 135, 211, 0.1) !important;
+        border-left: 2px solid var(--cs-main);
+    }
+    [data-theme="light"] .sub-item.active {
+        color: var(--cs-main) !important;
+    }
+
+    /* 回到頂部按鈕 */
+    .mobile-footer-action {
+        text-align: center; padding: 40px 20px; margin-top: 20px;
+        border-top: 1px solid var(--border-color);
+        position: relative; z-index: 5;
+    }
+    .scroll-top-btn {
+        background: transparent; border: 1px solid var(--text-muted);
+        color: var(--text-muted); padding: 10px 20px;
+        font-family: 'Fira Code', monospace; border-radius: 4px;
+        cursor: pointer; transition: 0.3s; font-size: 0.9rem;
+    }
+    .scroll-top-btn:hover {
+        border-color: var(--cs-main); color: var(--cs-main);
+        background: rgba(53, 135, 211, 0.05);
+    }
+}
+
+/* === 7. 迷你瀏覽器 (Live Preview) === */
+.browser-mockup {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px; /* 與下方程式碼區塊保持距離 */
+    background: #fff; /* 預設網頁背景是白的 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* 瀏覽器頂部工具列 */
+.browser-header {
+    background: #2d2d2d; /* 深色工具列 */
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+/* 紅黃綠燈號裝飾 */
+.browser-actions {
+    display: flex;
+    gap: 8px;
+    margin-right: 15px;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+/* 假網址列 */
+.browser-address-bar {
+    flex: 1;
+    background: #1a1a1a;
+    color: #888;
+    font-size: 0.8rem;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* iframe 本體 */
+.preview-frame {
+    width: 100%;
+    height: 300px; /* 固定高度，可依需求調整 */
+    border: none;
+    display: block;
+}
+
+/* === 8. 多檔案程式碼頁籤 (Multi-file Tabs) === */
+.code-tabs-container {
+    margin-top: 30px;
+    
+    /* 1. 關鍵修正：背景色改成跟程式碼區塊(#1e1e1e)一樣 */
+    /* 這樣就算有縫隙，透出來也是黑色的，肉眼就看不到了 */
+    background: #1e1e1e !important;
+    
+    /* 2. 邊框顏色建議改深一點，比較不突兀 */
+    border: 1px solid #444; 
+    border-radius: 8px;
+    overflow: hidden;
+    
+    /* 3. 結構修正：使用 Flexbox */
+    /* 這會強制內部的 Header 和 Content 上下緊密貼合，消除預設間隙 */
+    display: flex;
+    flex-direction: column; 
+}
+
+.tabs-header {
+    display: flex;
+    background: #1e1e1e; /* 深色背景區隔 */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border-right: 1px solid #333;
+}
+
+.tab-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+/* 啟動狀態的按鈕 */
+.tab-btn.active {
+    color: #3587d3; /* 藍色高亮 */
+    background: rgba(53, 135, 211, 0.1);
+    font-weight: bold;
+    border-bottom: 2px solid #3587d3;
+}
+
+/* 內容區塊 */
+.tab-content {
+    display: none; /* 預設隱藏 */
+    padding: 0;
+}
+
+/* 顯示中的內容 */
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.tab-content pre {
+    /* 1. 結構設定 */
+    margin: 0 !important;
+    padding: 15px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    
+    /* 2. 顯示模式 (解決底部白邊的關鍵) */
+    display: block; 
+    /* 刪除 vertical-align，因為 display: block 已經解決了問題 */
+    
+    /* 3. 滾動條控制 */
+    width: 100%;       /* 確保寬度佔滿 */
+    overflow-x: auto;  /* 只有當程式碼太長時，才出現下方捲軸 */
+    
+    /* 4. 外觀與背景 */
+    height: 100%;
+    background-color: #1e1e1e; /* 確保整個區塊都是深色，蓋住可能出現的白邊 */
+    box-sizing: border-box;    /* 重要！讓 padding 包含在寬度內，不會把捲軸擠出去 */
+}
+
+.tab-content pre::-webkit-scrollbar {
+    height: 8px; /* 捲軸高度變細 */
+}
+.tab-content pre::-webkit-scrollbar-thumb {
+    background: #444; /* 捲軸顏色改深灰，不要那麼顯眼 */
+    border-radius: 4px;
+}
+.tab-content pre::-webkit-scrollbar-track {
+    background: #1e1e1e; /* 軌道顏色跟背景一樣 */
+}
+
+.tab-content {
+    padding: 0 !important;
+}
+
+.tab-content code {
+    font-family: 'Fira Code', monospace; /* 確保字體 */
+    /* 確保沒有額外的 margin */
+    margin: 0;
+}
