@@ -1,1 +1,132 @@
-Not HERE...
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css"> </head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-icon">⌂</span><span class="logo-text">HOME</span>
+        </a>
+        <div class="hamburger" id="hamburger-btn">☰</div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="cs.html" class="nav-link cs-link">CS Info</a>
+            <!--a href="lit.html" class="nav-link lit-link">Literature</a>
+            <a href="art.html" class="nav-link art-link">Digital Art</a-->
+            <button class="theme-btn" id="theme-toggle">☀</button>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="scroll-trigger-container" id="scrollTrigger">
+            
+            <div class="sticky-content">
+                <div class="profile-left" id="profileLeft">
+                    <div class="avatar-wrapper">
+                        <img src="https://avatars.githubusercontent.com/u/71302529?v=4" alt="Avatar" class="avatar">
+                    </div>
+                    <h1 class="my-name">TZU-TING LAI (KVJK)</h1>
+                    <p class="my-title">Developer & Creator</p>
+                    <p class="my-quote">"Code is Poetry, Logic is Art."</p>
+                </div>
+
+                <div class="center-divider"></div>
+
+                <div class="intro-right" id="introRight">
+                    <div class="bio-box">
+                        <h2>About Me</h2>
+                        <br>
+                        <p>歡迎來到我的個人作品集網站！<br>
+            這裡展示了我在資訊實作、研究以及文學創作等各項領域中的經歷與成果。<br>
+                    </div>
+
+                    <div class="timeline-box">
+                        <h2>Experience</h2>
+                        <br>
+                        <div class="timeline-item cs">
+                            <span class="year">2024.09~2026.06</span>
+                            <span class="event">國立臺中科技大學 大學部資訊管理系</span>
+                        </div>
+                        <div class="timeline-item cs">
+                            <span class="year">2024.10~2025.12</span>
+                            <span class="event">專題 組長 網路應用與資通安全領域〈WS&BP 網站安全與瀏覽器防護〉</span>
+                        </div>
+                        <div class="timeline-item lit">
+                            <span class="year">2022~</span>
+                            <span class="event">連載小說《切開我與我們》</span>
+                        </div>
+                        <div class="timeline-item lit">
+                            <span class="year">2022~2023</span>
+                            <span class="event">發布詩集《撕開新詩集》</span>
+                        </div>
+                        <div class="timeline-item cs">
+                            <span class="year">2024.10~2025.12</span>
+                            <span class="event">專題 數位內容及多媒體應用領域〈動夜抓捕〉</span>
+                        </div>
+                        <div class="timeline-item cs">
+                            <span class="year">2019.09~2024.06</span>
+                            <span class="event">國立臺中科技大學 五專部資訊工程科</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="domain-section">
+            <div class="domain-container">
+                
+                <div class="domain-item cs-hover">
+                    <a href="cs.html" class="domain-title">Computer Science</a>
+                    <div class="domain-detail">
+                        <p>網頁前後端、演算法、App 開發</p>
+                        <ul>
+                            <li>Web Design</li>
+                            <li>Arduino</li>
+                            <li>Java / C#</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="domain-separator"></div>
+
+                <div class="domain-item lit-hover">
+                    <a href="lit.html" class="domain-title">Literature</a>
+                    <div class="domain-detail">
+                        <p>現代詩、小說、圖文創作（此頁面尚未完成）</p>
+                        <ul>
+                            <li>新詩創作</li>
+                            <li>小說</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="domain-separator"></div>
+
+                <div class="domain-item art-hover">
+                    <a href="art.html" class="domain-title">Digital and Art</a>
+                    <div class="domain-detail">
+                        <p>數位及跨域研究（此頁面尚未完成）</p>
+                        <ul>
+                            <li>數位文化</li>
+                            <li>Unity 實作</li>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2025 TZU-TING LAI. </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/index.js"></script> </body>
+</html>
