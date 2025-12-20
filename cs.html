@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cs.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-icon">⌂</span><span class="logo-text">HOME</span>
+        </a>
+        <div class="hamburger" id="hamburger-btn">☰</div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="cs.html" class="nav-link cs-link">CS Info</a>
+            <!--a href="lit.html" class="nav-link lit-link">Literature</a>
+            <a href="art.html" class="nav-link art-link">Digital Art</a-->
+            <button class="theme-btn" id="theme-toggle">☀</button>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <header class="intro-section" style="margin-bottom: 20px;">
+            <h1 
+                onclick="backToOverview()" 
+                style="color: var(--cs-main); font-family: 'Fira Code', monospace; cursor: pointer; display: inline-block; transition: 0.3s;"
+                onmouseover="this.style.textShadow='0 0 10px var(--cs-main)'"
+                onmouseout="this.style.textShadow='none'"
+            >
+                &lt;System.Log /&gt;
+            </h1>
+            <p>請選擇下方類別，檢視詳細實作代碼。</p>
+        </header>
+
+        <div class="cs-layout" id="csLayout">
+            
+            <div class="sidebar-wrapper">
+                <div class="back-btn-container" id="backBtnContainer">
+                    <div class="back-btn" onclick="backToOverview()">← 返回列表</div>
+                </div>
+
+                <div class="cs-sidebar" id="categoryList"></div>
+                
+                <div class="mobile-footer-action">
+                    <button class="scroll-top-btn" onclick="scrollToTop()">
+                        ↑ 回到頂部
+                    </button>
+                </div>
+            </div>
+            
+            <div class="cs-viewer" id="contentViewer">
+                <div class="placeholder-text">
+                    &lt; 請點擊左側細項以檢視內容 /&gt;
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 TZU-TING LAI.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        const csData = []; 
+      
+        function dedent(str) {
+            if(!str) return "";
+            str = str.replace(/^\n/, "");
+            const match = str.match(/^\s+(?=\S)/gm);
+            if (!match) return str;
+            const indent = Math.min(...match.map(el => el.length));
+            const re = new RegExp(`^\\s{${indent}}`, "gm");
+            return str.replace(re, "");
+        }
+            
+    </script>
+    <script src="js/cs-content/web-basic.js"></script>
+    <script src="js/cs-content/arduino.js"></script>
+    <script src="js/cs-content/java-ds.js"></script>
+    <script src="js/cs-content/csharp-oop.js"></script>
+    <script src="js/cs-content/web-prog.js"></script>
+    <script src="js/cs-content/leetcode-java.js"></script>
+    <script src="js/cs-content/projects.js"></script>
+
+    <script src="js/cs.js"></script>
+</body>
+</html>
